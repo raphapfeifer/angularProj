@@ -16,7 +16,7 @@ angular.module("listaTelefonica").controller("listaTelefonicaController",functio
 				
 				];*/
 				
-				
+				// comentatio de teste
 				var carregarContatos = function () {
 					$http.get("http://localhost:3412/contatos").success(function(data){
 						$scope.contatos = data;
