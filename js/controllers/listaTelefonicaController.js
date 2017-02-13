@@ -2,7 +2,6 @@ angular.module("listaTelefonica").controller("listaTelefonicaController",functio
 				$scope.app = "Lista Telefonica";
 				$scope.contatos = [];
 				$scope.operadoras = [];
-				//teste
 				/*$scope.contatos = [
 					{nome:$filter('uppercase')("Pedro"),telefone: "99998888",data: new Date(),operadora: {nome: "Oi",codigo:14,categoria: "Celular"},cor:"blue"},
 					{nome: "Ana",telefone: "99998888",data: new Date(),operadora:{nome:"Vivo",codigo:15,categoria:"Celular"},cor:"yellow"},
