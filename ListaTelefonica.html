@@ -9,6 +9,11 @@
 		<script src="lib/angular/angular-messages.js"></script>
 		<script src="js/app.js"></script>
 		<script src="js/controllers/listaTelefonicaController.js"></script>
+		<script src="js/services/contatosAPIService.js"></script>
+		<script src="js/services/operadorasAPIService.js"></script>
+		<script src="js/services/serialGeneratorService.js"></script>
+		<script src="js/config/serialGeneratorConfig.js"></script>
+		<script src="js/value/configValue.js"></script>
 	</head>	
 	<body ng-controller="listaTelefonicaController">
 		<div class="jumbotron">
@@ -17,6 +22,7 @@
 			<table ng-show="contatos.length > 0" class="table">
 				<tr>
 					<th></th>
+					<th>Serial</th>
 					<th><a href="" ng-click="ordenarPor('nome')">Nome</a></th>
 					<th><a href="" ng-click="ordenarPor('telefone')">Telefone</a></th>
 					<th>Operadora</th>
@@ -27,6 +33,7 @@
 				<!--	<td ng-repeat="(key,value) in contato">
 						{{value}}
 					</td> -->
+					<td>{{contato.serial}}</td>
 					<td><input type="checkbox" ng-model="contato.selecionado"/></td>
 					<td>{{contato.nome}}</td>
 					<td>{{contato.telefone}}</td>
