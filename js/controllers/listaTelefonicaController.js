@@ -34,6 +34,7 @@ angular.module("listaTelefonica").controller("listaTelefonicaController",functio
 				};
 				
 				$scope.adicionarContato = function(contato){
+					console.log(contato);
 					contato.serial = serialGenerator.generate();
 					contato.data = new Date();
 					contatosAPI.saveContato(contato).success(function(data){
@@ -44,9 +45,18 @@ angular.module("listaTelefonica").controller("listaTelefonicaController",functio
 				};
 				
 				$scope.apagarContatos = function(contatos){
-					$scope.contatos = contatos.filter(function (contato){
-							if(!contato.selecionado) return contato;
+					var contato = contatos.filter(function(contato){
+						if(contato.selecionado) return contato
 					});
+
+					contatosAPI.deleteContato(contato).success(function(data){
+						$scope.contatos = data;
+						carregarContatos();
+					});
+
+					/*$scope.contatos = contatos.filter(function (contato){
+							if(!contato.selecionado) return contato;
+					});*/
 
 				};
 

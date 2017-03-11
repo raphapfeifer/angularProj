@@ -20,8 +20,8 @@ var contatos = [
 app.interceptor(function (req,res,next){
 	console.log('interceptor 1');
     res.setHeader('Access-Control-Allow-Origin','*');
-	res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers','Content-Type');
+	res.setHeader('Access-Control-Allow-Methods', 'GET,POST,DELETE,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers','origin, x-requested-with,Content-Type');
     next();
 });
 
@@ -42,8 +42,22 @@ app.get('/contatos',function (req,res){
 });
 
 app.post('/contatos',function (req,res) {
+    console.log(req.body);
     var contato = req.body;
     contatos.push(JSON.parse(contato));
+    res.end();
+});
+
+app.delete('/contatos',function(req,res){
+
+    console.log(req.body);
+
+    var contatoDelete = req.body;
+
+    var pos = contatos.indexOf(contatoDelete.nome);
+
+    contatos.splice(JSON.parse(pos),1);
+    
     res.end();
 });
 
