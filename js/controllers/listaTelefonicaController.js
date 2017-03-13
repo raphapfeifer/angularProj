@@ -45,15 +45,17 @@ angular.module("listaTelefonica").controller("listaTelefonicaController",functio
 				};
 				
 				$scope.apagarContatos = function(contatos){
-					var contato = contatos.filter(function(contato){
-						if(contato.selecionado) return contato
+		
+					 contatos.filter(function(contato){
+						if(contato.selecionado)
+							contatosAPI.deleteContato(contato).success(function(data){
+							$scope.contatos = data;
+							carregarContatos();
+						});
+						
 					});
 
-					contatosAPI.deleteContato(contato).success(function(data){
-						$scope.contatos = data;
-						carregarContatos();
-					});
-
+					
 					/*$scope.contatos = contatos.filter(function (contato){
 							if(!contato.selecionado) return contato;
 					});*/
@@ -70,6 +72,14 @@ angular.module("listaTelefonica").controller("listaTelefonicaController",functio
 					$scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;
 				}
 				
+				var criarUsuario = function (nome,telefone){
+					return{
+						nome:nome,
+						telefone:telefone
+					};
+				};
+
+
 				carregarContatos();
 				carregarOperadoras();
 				

@@ -5,12 +5,13 @@ angular.module("listaTelefonica").factory("contatosAPI",function ($http,config){
     };
 
     var _saveContato = function(contato) {
+        console.log(contato);
         return $http.post(config.baseUrl + "/contatos",contato);
     };
 
     var _deleteContato = function(contato){
         console.log(contato);
-        return $http.delete(config.baseUrl + "/contatos", contato);
+        return $http.delete(config.baseUrl + "/contatos",contato);
     };
 
     return{

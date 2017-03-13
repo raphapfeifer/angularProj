@@ -42,7 +42,6 @@ app.get('/contatos',function (req,res){
 });
 
 app.post('/contatos',function (req,res) {
-    console.log(req.body);
     var contato = req.body;
     contatos.push(JSON.parse(contato));
     res.end();
@@ -50,13 +49,18 @@ app.post('/contatos',function (req,res) {
 
 app.delete('/contatos',function(req,res){
 
-    console.log(req.body);
 
-    var contatoDelete = req.body;
+    //console.log(req.body);
+    var contato = req.body;
 
-    var pos = contatos.indexOf(contatoDelete.nome);
+   /* contato.forEach(function(elemento){
+       console.log(elemento);
+   });*/
 
-    contatos.splice(JSON.parse(pos),1);
+   console.log(contato);
+    
+
+   // contatos.splice(JSON.parse(pos),1);
     
     res.end();
 });
