@@ -19,6 +19,9 @@ angular.module("listaTelefonica").controller("listaTelefonicaController",functio
 				// comentatio de teste
 				var carregarContatos = function () {
 					contatosAPI.getContatos().success(function(data){
+						data.forEach(function(item){
+							item.serial = serialGenerator.generate();
+						});
 						$scope.contatos = data;
 					}).error(function(data,status){
 						$scope.message = "Aconteceu um problema: " + data;
@@ -72,12 +75,12 @@ angular.module("listaTelefonica").controller("listaTelefonicaController",functio
 					$scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;
 				}
 				
-				var criarUsuario = function (nome,telefone){
+				/*var criarUsuario = function (nome,telefone){
 					return{
 						nome:nome,
 						telefone:telefone
 					};
-				};
+				};*/
 
 
 				carregarContatos();
