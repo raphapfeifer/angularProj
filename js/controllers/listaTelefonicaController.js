@@ -24,7 +24,7 @@ angular.module("listaTelefonica").controller("listaTelefonicaController",functio
 						});
 						$scope.contatos = data;
 					}).error(function(data,status){
-						$scope.message = "Aconteceu um problema: " + data;
+						$scope.error = "Aconteceu um problema: " + data;
 					});
 				};
 
