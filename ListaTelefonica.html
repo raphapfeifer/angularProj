@@ -18,14 +18,16 @@
 		<script src="js/filters/nameFilter.js"></script>
 		<script src="js/filters/elipsisFilter.js"></script>
 		<script src="js/directive/uiAlertDirective.js"></script>
+		<script src="js/directive/uiDateDirective.js"></script>
 	</head>	
 	<body ng-controller="listaTelefonicaController">
 		<div class="jumbotron">
 			<h3>{{app}}</h3>
 
-			<ui-alert title="Ops, aconteceu um problema!">
-				Não foi possível carregar os dados
-			</ui-alert>
+			
+			<ui-alert ng-show="error" title="Ops, aconteceu um problema!">
+				{{error}}
+			</ui-alert> 
 
 			<input  class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?"/>
 			<table ng-show="contatos.length > 0" class="table">
@@ -55,7 +57,8 @@
 			<form name="contatoForm">
 				<input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" name="nome" ng-required="true" ng-minlength="10"/>
 				<input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" name="telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/"/>
-				<select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria + '(' + (operadora.preco | currency) + ')' for operadora in operadoras | orderBy:'nome'">
+				<input class="form-control" type="text" ng-model="contato.data" placeholder="Data" name="data" ng-required="true" ng-minlength="10" ui-date>
+				<select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria + '(' + (operadora.preco | currency) + ')' for operadora in operadoras | orderBy:'nome'">	
 					<option value="">Selecione uma operadora</option>
 				</select>
 			</form>
@@ -69,7 +72,7 @@
 				</div>
 			</div>
 			
-			<div ng-show="contatoForm.telefone.$dirty && contatoForm.nome.$invalid" ng-messages="contatoForm.telefone.$error" class="alert alert-danger" >
+			<div ng-show="contatoForm.telefone.$dirty && contatoForm.nome.$invalid" ng-messages="contatoForm.telefone.$error" class="alert alert-danger">
 				<div ng-message="required" >
 					Por favor, preencher o campo telefone!
 				</div>
@@ -78,6 +81,15 @@
 				</div>
 			</div>
 			
+			<div ng-show="contatoForm.data.$dirty && contatoForm.data.$invalid" ng-messages="contatoForm.data.$error" class="alert alert-danger">
+				<div ng-message="require">
+					Por favor, preencher o campo data
+				</div>
+				<div ng-message="minlength">
+					O campo data tem que conter dia, mês e ano
+				</div>	
+			</div>	
+
 			<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar Contato</button>
 			<!-- Exemplo validando os campos obrigatorios pelo botão -->
 			<!-- <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">Adicionar Contato</button> -->
