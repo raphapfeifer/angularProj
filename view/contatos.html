@@ -1,0 +1,53 @@
+<div class="jumbotron">
+			<h3>{{app}}</h3>
+
+			
+			<ui-alert ng-show="error" title="Ops, aconteceu um problema!">
+				{{error}}
+			</ui-alert>
+
+			<ui-accordions>	
+				<ui-accordion title="Accordion 1">
+					teste de accordion 1
+				</ui-accordion>
+				
+				<ui-accordion title="Accordion 2">
+					teste de accordion 2
+				</ui-accordion>
+			</ui-accordions>		
+			
+			<input  class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?"/>
+			<table ng-show="contatos.length > 0" class="table">
+				<tr>
+					<th></th>
+					<th>Serial</th>
+					<th><a href="" ng-click="ordenarPor('nome')">Nome</a></th>
+					<th><a href="" ng-click="ordenarPor('telefone')">Telefone</a></th>
+					<th>Operadora</th>
+					<th>Data</th>
+				</tr>	
+				<tr ng-class="{selecionado:contato.selecionado}" ng-repeat="contato in contatos | filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
+					<!-- key = nome, value = valor do telefone  deu certo com dois valores no array -->
+				<!--	<td ng-repeat="(key,value) in contato">
+						{{value}}
+					</td> -->
+					<td><input type="checkbox" ng-model="contato.selecionado"/></td>
+					<td>{{contato.serial}}</td>
+					<td>{{contato.nome | name | elipsis:10}}</td>
+					<td>{{contato.telefone}}</td>
+					<td>{{contato.operadora.nome | lowercase}}</td>
+					<td>{{contato.data | date:'EEEE dd/MM/yyyy HH:mm'}}</td>
+					<td><div style="width: 20px; height: 20px;" ng-style="{'background-color':contato.cor}"></div></td>
+				</tr>	
+			</table>
+			<hr/>
+			<!-- Exemplo validando os campos obrigatorios pelo botão -->
+			<!-- <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">Adicionar Contato</button> -->
+			<!-- Exemplo com o botão aparecendo na tela e abilitado com algum contato selecionado-->
+			<!-- <button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-disabled="!isContatoSelecionado(contatos)">Apagar Contatos</button> -->
+			<!-- Exemplo com ele escondido e aparecendo ao selecionar algum contato ng-show -->
+			<!-- <button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-show="isContatoSelecionado(contatos)">Apagar Contatos</button> -->
+			<!-- Exemplo com o botão sendo carregado, apenas se houver necessidade, para não sobrecarregar memoria  ng-if -->
+			<a class="btn btn-primary btn-block" href="#/novoContato">Novo Contato</a>
+			<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-if="isContatoSelecionado(contatos)">Apagar Contatos</button>
+		</div>

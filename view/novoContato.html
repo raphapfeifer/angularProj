@@ -1,0 +1,42 @@
+<div class="jumbotron">
+    <form name="contatoForm">
+        <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" name="nome" ng-required="true" ng-minlength="10"
+        />
+        <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" name="telefone" ng-required="true"
+            ng-pattern="/^\d{4,5}-\d{4}$/" />
+        <input class="form-control" type="text" ng-model="contato.data" placeholder="Data" name="data" ng-required="true" ng-minlength="10"
+            ui-date>
+            <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria + '(' + (operadora.preco | currency) + ')' for operadora in operadoras | orderBy:'nome'">	
+					<option value="">Selecione uma operadora</option>
+				</select>
+    </form>
+
+    <div ng-show="contatoForm.nome.$dirty && contatoForm.nome.$invalid" ng-messages="contatoForm.nome.$error" class="alert alert-danger">
+        <div ng-message="required">
+            Por favor, preencha o campo nome!
+        </div>
+        <div ng-message="minlength">
+            O campo nome deve ter no mínimo 10 caracteres!
+        </div>
+    </div>
+
+    <div ng-show="contatoForm.telefone.$dirty && contatoForm.nome.$invalid" ng-messages="contatoForm.telefone.$error" class="alert alert-danger">
+        <div ng-message="required">
+            Por favor, preencher o campo telefone!
+        </div>
+        <div ng-message="pattern">
+            O campo telefone deve ter o formato DDDD-DDDD
+        </div>
+    </div>
+
+    <div ng-show="contatoForm.data.$dirty && contatoForm.data.$invalid" ng-messages="contatoForm.data.$error" class="alert alert-danger">
+        <div ng-message="require">
+            Por favor, preencher o campo data
+        </div>
+        <div ng-message="minlength">
+            O campo data tem que conter dia, mês e ano
+        </div>
+    </div>
+
+    <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar Contato</button>
+</div>
