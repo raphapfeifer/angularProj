@@ -1,10 +1,9 @@
-angular.module("listaTelefonica").controller("novoContatoController",function($scope,contatosAPI,operadorasAPI,serialGenerator){
+angular.module("listaTelefonica").controller("novoContatoController",function($scope,$filter,contatosAPI,operadorasAPI,serialGenerator){
 				$scope.app = "Lista Telefonica";
 				$scope.contatos = [];
 				$scope.operadoras = [];
-
-
-                var carregarOperadoras = function () {
+				
+				var carregarOperadoras = function () {
 					operadorasAPI.getOperadoras().success(function(data){
 						$scope.operadoras = data;
 					}).error(function(data,status) {
@@ -17,8 +16,10 @@ angular.module("listaTelefonica").controller("novoContatoController",function($s
 					contatosAPI.saveContato(contato).success(function(data){
 						delete $scope.contato;
 						$scope.contatoForm.$setPristine();
+						carregarContatos();
 					});
 				};
-                
-                carragarOperadoras();
+				
+				carregarOperadoras();
+				
 			});
