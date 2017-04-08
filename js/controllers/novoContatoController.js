@@ -1,13 +1,6 @@
-angular.module("listaTelefonica").controller("novoContatoController",function($scope,contatosAPI,operadorasAPI,serialGenerator,$location){
-				
-				var carregarOperadoras = function () {
-					operadorasAPI.getOperadoras().success(function(data){
-						$scope.operadoras = data;
-					}).error(function(data,status) {
-						$scope.message = "Aconteceu um problema: " + data;
-					});
-				};
-				
+angular.module("listaTelefonica").controller("novoContatoController",function($scope,contatosAPI,serialGenerator,$location,operadoras){
+				$scope.operadoras = operadoras.data;
+
 				$scope.adicionarContato = function(contato){
 					contato.serial = serialGenerator.generate();
 					contatosAPI.saveContato(contato).success(function(data){
@@ -16,7 +9,5 @@ angular.module("listaTelefonica").controller("novoContatoController",function($s
 						$location.path("/contatos");
 					});
 				};
-				
-				carregarOperadoras();
 				
 			});
