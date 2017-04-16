@@ -1,7 +1,6 @@
 angular.module("listaTelefonica").controller("contatosController",function($scope,contatos,operadoras,serialGenerator){
 				$scope.app = "Lista Telefonica";
 				$scope.contatos = contatos.data;
-				console.log(contatos);	
 				$scope.operadoras = operadoras.data;
 
 				
@@ -10,6 +9,13 @@ angular.module("listaTelefonica").controller("contatosController",function($scop
 							item.serial = serialGenerator.generate();
 						});
 				};
+
+				/*var contador = function(contatos){
+					var cont = 1;
+					contatos.forEach(function(item){
+						item.id = cont++;	
+					});
+				};*/
 
 				$scope.apagarContatos = function(contatos){
 					 contatos.filter(function(contato){
@@ -37,5 +43,7 @@ angular.module("listaTelefonica").controller("contatosController",function($scop
 				}
 				
 				generateSerial($scope.contatos);
+				//contador($scope.contatos);
+				
 				
 			});

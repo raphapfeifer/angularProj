@@ -33,7 +33,8 @@
 					</td> -->
 					<td><input type="checkbox" ng-model="contato.selecionado"/></td>
 					<td>{{contato.serial}}</td>
-					<td>{{contato.nome | name | elipsis:10}}</td>
+					<!--<td><a href="#/detalhesContato/{{contato.id}}">{{contato.nome | name | elipsis:10}}</a></td> -->
+					<td><a href="#/detalhesContato/{{contato.id}}">{{contato.nome | name}}</a></td>
 					<td>{{contato.telefone}}</td>
 					<td>{{contato.operadora.nome | lowercase}}</td>
 					<td>{{contato.data | date:'EEEE dd/MM/yyyy HH:mm'}}</td>

@@ -2,6 +2,7 @@ var router = require('./router');
 
 var app = router(3412);
 
+
 var operadoras = [
     {nome:"Oi",codigo: 14,categoria:"Celular",preco: 2},
     {nome:"Vivo",codigo: 15,categoria:"Celular",preco: 1},
@@ -11,9 +12,9 @@ var operadoras = [
 ];
 
 var contatos = [
-    {nome:"bruno da silva", teleforne: "9999-2222", data: new Date(), operadora: operadoras[0]},
-    {nome:"sandra pires", telefone: "9999-3333",data: new Date(),operadora: operadoras[1]},
-    {nome:"mariana alves",telefone:"9999-9999", data: new Date(),operadora: operadoras[2]}
+    {id:1,nome:"bruno da silva", teleforne: "9999-2222", data: new Date(), operadora: operadoras[0]},
+    {id:2,nome:"sandra pires", telefone: "9999-3333",data: new Date(),operadora: operadoras[1]},
+    {id:3,nome:"mariana alves",telefone:"9999-9999", data: new Date(),operadora: operadoras[2]}
 ];
 
 
@@ -26,11 +27,6 @@ app.interceptor(function (req,res,next){
 });
 
 
-/*app.interceptor(function (req,res,next){
-    res.setHeader('Content-Type','application/json;charset=UTF-8');
-    next();
-});*/
-
 app.get('/operadoras',function (req,res) {
     res.write(JSON.stringify(operadoras));
     res.end();
@@ -40,6 +36,20 @@ app.get('/contatos',function (req,res){
     res.write(JSON.stringify(contatos));
     res.end();
 });
+
+app.get('/contatos/:id', function(req,res){
+     console.log("passou aki");
+    contatos.forEach(function(contato){
+        if(contato.id == req.params.id){
+            res.write(JSON.stringify(contato));
+            res.end()
+            return;
+        }
+    });
+    res.status(404).end();
+});
+
+
 
 app.post('/contatos',function (req,res) {
     var contato = req.body;
