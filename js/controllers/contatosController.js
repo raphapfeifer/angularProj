@@ -11,15 +11,16 @@ angular.module("listaTelefonica").controller("contatosController",function($scop
 				};
 
 				$scope.apagarContatos = function(contatos){
-						
-						 contatos.filter(function(contato){
-							if(contato.selecionado) 
-							contatosAPI.deleteContato(contato.id).success(function(data){
-							$location.path("/contatos");
+						var contatosExistentes = [];
+						 contatos.forEach(function(contato){
+							if(contato.selecionado ){
+									contatosAPI.deleteContato(contato.id).success(function(data){
+								});
+							}else{
+								contatosExistentes.push(contato);
+							}	
 						});
-							response.redirect('/')
-						 });
-
+						$scope.contatos = contatosExistentes;
 				};
 
 				$scope.isContatoSelecionado = function (contatos){

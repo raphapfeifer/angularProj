@@ -41,9 +41,16 @@ app.get('/contatos/:id', function(req, res) {
 });
 
 app.delete('/contatos/:contatoId',function(req,res){
-    var pos = req.params.contatoId;
-    contatos.splice(pos-1,1);
-    res.json(contatos);
+    var contatoId = req.params.contatoId;
+
+  contatos.map(function(element){
+      if(element.id == contatoId)
+        contato = element;
+    });
+ 
+    var pos = contatos.indexOf(contato);
+    
+    contatos.splice(pos,1);
 });
 
 app.post('/contatos', function(req, res) {

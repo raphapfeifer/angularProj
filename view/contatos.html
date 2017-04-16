@@ -1,7 +1,6 @@
 <div class="jumbotron">
 			<h3>{{app}}</h3> 
-
-			
+	
 			<ui-alert ng-show="!contatos" title="Ops, aconteceu um problema!">
 				Sem contatos carregados!
 			</ui-alert> 
@@ -27,14 +26,9 @@
 					<th>Data</th>
 				</tr>	
 				<tr ng-class="{selecionado:contato.selecionado}" ng-repeat="contato in contatos | filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
-					<!-- key = nome, value = valor do telefone  deu certo com dois valores no array -->
-				<!--	<td ng-repeat="(key,value) in contato">
-						{{value}}
-					</td> -->
 					<td><input type="checkbox" ng-model="contato.selecionado"/></td>
 					<td>{{contato.serial}}</td>
-					<!--<td><a href="#/detalhesContato/{{contato.id}}">{{contato.nome | name | elipsis:10}}</a></td> -->
-					<td><a href="#/detalhesContato/{{contato.id}}">{{contato.nome | name}}</a></td>
+					<td><a href="#/detalhesContato/{{contato.id}}">{{contato.nome | name | elipsis:10}}</a></td>
 					<td>{{contato.telefone}}</td>
 					<td>{{contato.operadora.nome | lowercase}}</td>
 					<td>{{contato.data | date:'EEEE dd/MM/yyyy HH:mm'}}</td>
@@ -42,13 +36,6 @@
 				</tr>	
 			</table>
 			<hr/>
-			<!-- Exemplo validando os campos obrigatorios pelo botão -->
-			<!-- <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">Adicionar Contato</button> -->
-			<!-- Exemplo com o botão aparecendo na tela e abilitado com algum contato selecionado-->
-			<!-- <button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-disabled="!isContatoSelecionado(contatos)">Apagar Contatos</button> -->
-			<!-- Exemplo com ele escondido e aparecendo ao selecionar algum contato ng-show -->
-			<!-- <button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-show="isContatoSelecionado(contatos)">Apagar Contatos</button> -->
-			<!-- Exemplo com o botão sendo carregado, apenas se houver necessidade, para não sobrecarregar memoria  ng-if -->
 			<a class="btn btn-primary btn-block" href="#/novoContato">Novo Contato</a>
 			<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-if="isContatoSelecionado(contatos)">Apagar Contatos</button>
 		</div>
