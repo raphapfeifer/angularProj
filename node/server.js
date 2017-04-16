@@ -40,24 +40,11 @@ app.get('/contatos/:id', function(req, res) {
   res.status(404).end();
 });
 
-app.delete('/contatos',function(req,res){
-
-
-    //console.log(req.body);
-    var contato = req.body;
-
-   /* contato.forEach(function(elemento){
-       console.log(elemento);
-   });*/
-
-   console.log(contato);
-    
-
-   // contatos.splice(JSON.parse(pos),1);
-    
-    res.end();
+app.delete('/contatos/:contatoId',function(req,res){
+    var pos = req.params.contatoId;
+    contatos.splice(pos-1,1);
+    res.json(contatos);
 });
-
 
 app.post('/contatos', function(req, res) {
   contatos.push(req.body);
