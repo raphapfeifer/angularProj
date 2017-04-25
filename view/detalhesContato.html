@@ -1,10 +1,17 @@
-<div class="detalhes">
-    <label>Id:</label>
-    {{contato.id}} </br >
-    <label>Nome:</label>
-    {{contato.nome}} 
-    <label>Telefone:</label>
-    {{contato.telefone}}
-    <label>Operadora:</label>
-    {{contato.operadora.nome}}
+<div class="jumbotron">
+    <table class="table">
+        <tr>
+            <td>Nome:</td>
+            <td>{{contato.nome}}</td>
+        </tr>
+        <tr>
+            <td>Telefone:</td>
+            <td>{{contato.telefone}}
+        </tr>        
+        <tr>
+            <td>Data:</td>
+            <td>{{contato.data | date:"dd/MM/yyyy"}}</td>
+        </tr>    
+    </table> 
+    <a class="btn btn-primary" href="#/contatos">Voltar</a>   
 </div> 

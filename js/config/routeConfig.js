@@ -25,10 +25,12 @@ angular.module("listaTelefonica").config(function($routeProvider){
         controller: "detalhesContatoController",
         resolve:{
             contato: function (contatosAPI,$route){
-                //console.log($route.current.params.id);
                 return contatosAPI.getContato($route.current.params.id);
             }
         }
+    });
+    $routeProvider.when("/error",{
+        templateUrl: "view/error.html"
     });
     $routeProvider.otherwise({redirectTo: "/contatos"});
 });
