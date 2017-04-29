@@ -51,6 +51,7 @@ app.delete('/contatos/:contatoId',function(req,res){
     var pos = contatos.indexOf(contato);
     
     contatos.splice(pos,1);
+    res.json(true);
 });
 
 app.post('/contatos', function(req, res) {

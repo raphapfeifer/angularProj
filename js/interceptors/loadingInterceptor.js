@@ -9,6 +9,7 @@ angular.module("listaTelefonica").factory("loadingInterceptor",function($q,$root
             return $q.reject(rejection);
         },
         response: function(response){
+            //$rootScope.loading = false;
             $timeout(function(){
                $rootScope.loading = false; 
             },500);
