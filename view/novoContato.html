@@ -1,7 +1,22 @@
 <div class="jumbotron">
     <form name="contatoForm">
-        <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" name="nome" ng-required="true" ng-minlength="10"
-        />
+        <select class="form-control" ng-model="contato.tipo">
+            <option value="">Selecione o Tipo</option>
+            <option>Pessoa Física</option>
+            <option>Pessoa Jurídica</option>
+         </select>  
+
+        <div ng-if="contato.tipo === 'Pessoa Física'"> 
+            <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" name="nome" ng-required="true" ng-minlength="10"/>
+            <input class="form-control" type="text" ng-model="contato.cpf" placeholder="CPF" name="cpf" ng-required="true"/>
+        </div>
+
+        <div ng-if="contato.tipo === 'Pessoa Jurídica'"> 
+            <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" name="nome" ng-required="true" ng-minlength="10"/>
+            <input class="form-control" type="text" ng-model="contato.cnpj" placeholder="CNPJ" name="cnpj" ng-required="true"/>
+        </div>
+
+
         <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" name="telefone" ng-required="true"
             ng-pattern="/^\d{4,5}-\d{4}$/" />
         <input class="form-control" type="text" ng-model="contato.data" placeholder="Data" name="data" ng-required="true" ng-minlength="10"
@@ -19,6 +34,12 @@
             O campo nome deve ter no mínimo 10 caracteres!
         </div>
     </div>
+
+    <div ng-show="contatoForm.cpf.$dirty && contatoForm.cpf.$invalid" ng-messages="contatoForm.cpf.$error" class="alert alert-danger">
+        <div ng-messages="required">
+            Por favor, preencha o campo cpf!
+        </div>
+    </div> 
 
     <div ng-show="contatoForm.telefone.$dirty && contatoForm.nome.$invalid" ng-messages="contatoForm.telefone.$error" class="alert alert-danger">
         <div ng-message="required">
