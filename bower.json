@@ -1,0 +1,20 @@
+{
+  "name": "angularProj",
+  "homepage": "https://github.com/raphapfeifer/angularProj",
+  "authors": [
+    "raphapfeifer <rapha_pfeifer@yahoo.com.br>"
+  ],
+  "description": "Projeto Angular",
+  "main": "",
+  "keywords": [
+    "angularjs"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
