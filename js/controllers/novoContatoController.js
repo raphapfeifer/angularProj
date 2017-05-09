@@ -1,4 +1,4 @@
-angular.module("listaTelefonica").controller("novoContatoController",function($scope,contatosAPI,serialGenerator,$location,operadoras){
+angular.module("listaTelefonica").controller("novoContatoController",['$scope','contatosAPI','serialGenerator','$location','operadoras',function($scope,contatosAPI,serialGenerator,$location,operadoras){
 				$scope.operadoras = operadoras.data;
 
 				$scope.adicionarContato = function(contato){
@@ -10,4 +10,4 @@ angular.module("listaTelefonica").controller("novoContatoController",function($s
 					});
 				};
 				
-			});
+			}]);

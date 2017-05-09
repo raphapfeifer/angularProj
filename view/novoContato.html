@@ -19,8 +19,7 @@
 
         <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" name="telefone" ng-required="true"
             ng-pattern="/^\d{4,5}-\d{4}$/" />
-        <input class="form-control" type="text" ng-model="contato.data" placeholder="Data" name="data" ng-required="true" ng-minlength="10"
-            ui-date>
+        <input class="form-control" type="text" ng-model="contato.data" placeholder="Data" name="data" ng-required="true" ng-minlength="10" ui-date/>
             <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria + '(' + (operadora.preco | currency) + ')' for operadora in operadoras | orderBy:'nome'">	
 					<option value="">Selecione uma operadora</option>
 				</select>

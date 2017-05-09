@@ -1,4 +1,4 @@
-angular.module("listaTelefonica").factory("contatosAPI",function ($http,config){
+angular.module("listaTelefonica").factory("contatosAPI",['$http','config',function ($http,config){
 
     var _getContatos = function () {
         return $http.get(config.baseUrl + "/contatos"); 
@@ -6,7 +6,7 @@ angular.module("listaTelefonica").factory("contatosAPI",function ($http,config){
     };
 
     var _getContato = function (id){
-        return $http.get(config.baseUrl + "/contatos/" + id)
+        return $http.get(config.baseUrl + "/contatos/" + id);
     };
 
     var _saveContato = function(contato) {
@@ -24,4 +24,4 @@ angular.module("listaTelefonica").factory("contatosAPI",function ($http,config){
         deleteContato: _deleteContato
     };
 
-});
+}]);
