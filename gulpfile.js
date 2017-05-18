@@ -8,6 +8,7 @@ var htmlmin = require('gulp-htmlmin');
 var cleanCSS = require('gulp-clean-css');
 var runSequence = require('run-sequence');
 var rename = require('gulp-rename');
+var imagemin = require('gulp-imagemin');
 //var livereload = require('gulp-livereload');
 
 gulp.task('clean',function(){
@@ -43,6 +44,12 @@ gulp.task('cssmin',function(){
     .pipe(gulp.dest('dist/css'));  
 });
 
+gulp.task('imagemin',function(){
+    return gulp.src('img/**/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest('dist/img'));
+});
+
 gulp.task('copy',function(){
     return gulp.src('ListaTelefonica-prod.html')
     .pipe(rename('ListaTelefonica.html'))
@@ -50,7 +57,7 @@ gulp.task('copy',function(){
 })
 
 gulp.task('default',function(cb){
-   return runSequence('clean',['jshint','uglify','htmlmin','cssmin','copy'],cb)
+   return runSequence('clean',['jshint','uglify','htmlmin','cssmin','imagemin','copy'],cb)
 });
 
 

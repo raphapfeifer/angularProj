@@ -5,7 +5,7 @@
 <div class="jumbotron">
 			<h3>{{app}}</h3> 
 	
-			<ui-alert ng-show="!contatos" title="Ops, aconteceu um problema!">
+			<ui-alert ng-if="contatos.length <= 0" title="Ops, aconteceu um problema!">
 				Sem contatos carregados!
 			</ui-alert> 
 
