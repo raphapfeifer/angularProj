@@ -24,7 +24,8 @@ gulp.task('jshint',function(){
 });
 
 gulp.task('uglify', function(){
-    return es.merge([gulp.src(['bower_components/angular/angular.min.js','bower_components/angular-route/angular-route.min.js','bower_components/angular-messages/angular-messages.min.js']), 
+    return es.merge([gulp.src(['bower_components/angular/angular.min.js','bower_components/angular-route/angular-route.min.js','bower_components/angular-i18n/angular-locale_pt-br.js',
+    'bower_components/angular-messages/angular-messages.min.js','bower_components/firebase/firebase.js']), 
     gulp.src(['lib/**/*.js','js/**/*.js']).pipe(concat('scripts.js')).pipe(uglify())
 ])
     .pipe(uglify())
@@ -84,7 +85,7 @@ gulp.task('browser-sync',function(){
 
 
 gulp.task('default',function(cb){
-   return runSequence('clean',['jshint','uglify','htmlmin','cssmin','imagemin','copy','browser-sync'],cb)
+   return runSequence('clean',['jshint','uglify','htmlmin','cssmin','imagemin','copy'],cb)
 });
 
 

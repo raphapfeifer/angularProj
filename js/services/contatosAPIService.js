@@ -1,5 +1,7 @@
 angular.module("listaTelefonica").factory("contatosAPI",['$http','config',function ($http,config){
 
+   // var firebase = require('firebase');
+
     var _getContatos = function () {
         return $http.get(config.baseUrl + "/contatos"); 
 
@@ -10,6 +12,8 @@ angular.module("listaTelefonica").factory("contatosAPI",['$http','config',functi
     };
 
     var _saveContato = function(contato) {
+        //console.log(contato.operadora);
+        firebase.database().ref().child('contatos').push(contato);
         return $http.post(config.baseUrl + "/contatos",contato);
     };
 
