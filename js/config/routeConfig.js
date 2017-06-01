@@ -4,6 +4,7 @@ angular.module("listaTelefonica").config(['$routeProvider',function($routeProvid
         controller: "contatosController",
         resolve:{
             contatos:['contatosAPI',function(contatosAPI){
+                //console.log(contatosAPI.getContatos());
                 return contatosAPI.getContatos();
             }],
             operadoras:['operadorasAPI',function(operadorasAPI){

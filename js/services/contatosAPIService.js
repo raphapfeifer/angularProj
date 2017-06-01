@@ -3,8 +3,21 @@ angular.module("listaTelefonica").factory("contatosAPI",['$http','config',functi
    // var firebase = require('firebase');
 
     var _getContatos = function () {
-        return $http.get(config.baseUrl + "/contatos"); 
-
+        //return $http.get(config.baseUrl + "/contatos"); 
+       var lista = [];
+       var query = firebase.database().ref('contatos').orderByKey();
+        query.on('value',function(snapshot){
+            snapshot.forEach(function(childSnapshot){
+                var item = childSnapshot.val();
+                item.id = childSnapshot.key;
+                
+                //console.log(item);
+                return lista.push(item);
+            });
+        });
+       return lista;
+        //console.log(lista);
+        //return lista; 
     };
 
     var _getContato = function (id){
